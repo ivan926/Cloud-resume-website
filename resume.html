@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Firstname Lastname – Resume</title>
+  <title>Web Resume</title>
   <meta name="description" content="One‑page responsive, printable HTML resume." />
 </head>
   <link rel="stylesheet" href="resume.css" />
@@ -21,7 +21,7 @@
       box-shadow: 0 0 16px rgba(14,165,233,.6);
       transition: background .2s, transform .2s, box-shadow .3s;
       z-index: 9999;
-      animation: pulse-glow 2s infinite;
+      animation: pulse-glow 2s infinite, floaty 3s ease-in-out infinite;
     }
     .floating-btn:hover {
       background: #0284c7;
@@ -48,6 +48,10 @@
       80% { content: "🔐 JK JK JK.."; letter-spacing: 3px; }
       85% { content: "🔐 ;>)..."; letter-spacing: 3px; }
       100% { content: "🔓 Redirecting..."; letter-spacing: 1px; }
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
   </style>
 </head>
