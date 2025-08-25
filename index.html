@@ -12,16 +12,13 @@
       --paper:#0f1115; --ink:#e5eefb; --muted:#94a3b8; --line:#1f2937;
       --accent:#0ea5e9; --accent-2:#22c55e; --neon:#67e8f9; --neon-2:#86efac; --radius:16px;
     }
-    body{
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(14,165,233,.10), transparent 60%),
-        radial-gradient(1200px 600px at 100% 10%, rgba(34,197,94,.10), transparent 60%),
-        linear-gradient(transparent 23px, rgba(255,255,255,.04) 24px, transparent 25px) 0 0/24px 24px,
-        linear-gradient(90deg, transparent 23px, rgba(255,255,255,.04) 24px, transparent 25px) 0 0/24px 24px,
-        var(--bg);
-      color:var(--ink);
+    .sheet{
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%) , var(--paper);
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      min-height: 78vh;
     }
-    .sheet{ background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%) , var(--paper); position:relative; }
     .sheet::before{ content:""; position:absolute; inset:0; border-radius:16px; pointer-events:none;
       box-shadow: 0 0 0 1px rgba(14,165,233,.20), 0 0 50px rgba(14,165,233,.06), 0 0 60px rgba(34,197,94,.04) inset; mix-blend-mode:screen; }
     header{ position:relative; }
@@ -57,7 +54,7 @@
     .xp:hover::before{ opacity:.7; }
 
     /* Download button styles */
-    .actions{ display:flex; justify-content:flex-end; padding:14px 28px 24px; gap:.5rem; }
+    .actions{ display:flex; justify-content:flex-end; padding:14px 28px 24px; gap:.5rem; margin-top:auto; }
     .btn{
       appearance:none; border:1px solid var(--line); background:linear-gradient(180deg, rgba(14,165,233,.10), rgba(34,197,94,.06));
       color:var(--ink); padding:.55rem .85rem; border-radius:10px; cursor:pointer; font-weight:600;
@@ -82,6 +79,38 @@
 
     @media (max-width: 600px){ .matrix-bg{ opacity:.5; } }
     @media (prefers-reduced-motion: reduce){ .matrix-bg{ display:none; } }
+
+    /* --- Hero section (inspired by sample) --- */
+    .hero{ display:flex; gap:min(4vw,2rem); align-items:center; padding:24px 6px 8px; }
+    .hero-left{ flex:0 0 auto; }
+    .hero-right{ flex:1 1 auto; }
+
+    /* Avatar with neon cyan ring */
+    .avatar{ width:220px; height:220px; border-radius:50%; overflow:hidden; position:relative; box-shadow:0 0 0 6px rgba(103,232,249,.15), 0 0 60px rgba(103,232,249,.25); }
+    .avatar::after{ content:""; position:absolute; inset:-8px; border-radius:50%; background: radial-gradient(closest-side, rgba(103,232,249,.35), transparent 70%); filter: blur(6px); pointer-events:none; }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Typographic scale */
+    .kicker{ color:var(--muted); font-weight:600; letter-spacing:.01em; margin:0 0 10px; }
+    .headline{ font-size: clamp(32px, 4vw + 12px, 64px); line-height:1.05; margin:0 0 8px; font-weight:800; }
+    .highlight{ color:#38bdf8; text-shadow:0 0 22px rgba(56,189,248,.55), 0 0 8px rgba(56,189,248,.35); }
+    .subhead{ font-size: clamp(16px, 1.2vw + 12px, 28px); color:#e6edf7; margin:.25rem 0; }
+    .subhead.large{ font-size: clamp(20px, 2vw + 14px, 40px); font-weight:700; }
+
+    /* Contacts row */
+    .hero-contacts{ display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; align-items:center; margin:18px 0 10px; }
+    .chip{ display:inline-flex; align-items:center; gap:.4rem; border:1px solid var(--line); padding:.5rem .75rem; border-radius:999px; color:var(--ink); text-decoration:none; background:linear-gradient(180deg, rgba(2,6,23,.6), rgba(2,6,23,.2)); }
+    .chip:hover{ box-shadow:0 0 0 1px rgba(14,165,233,.24), 0 0 16px rgba(14,165,233,.12); }
+    .btn.primary{ border-color: rgba(14,165,233,.4); background:linear-gradient(180deg, rgba(14,165,233,.18), rgba(34,197,94,.10)); font-weight:700; }
+
+    .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(148,163,184,.35), transparent); margin:16px 0 0; }
+
+    /* Responsive: stack on small screens */
+    @media (max-width: 740px){
+      .hero{ flex-direction:column; align-items:flex-start; }
+      .avatar{ width:160px; height:160px; }
+      .headline{ font-size: clamp(28px, 6vw + 8px, 48px); }
+    }
   </style>
  
 </head>
@@ -90,70 +119,29 @@
   <canvas id="rain-bg" class="matrix-bg" aria-hidden="true"></canvas>
   <div class="sheet" role="document">
     <header>
-      <div class="title">
-        <h1>Ivan Arriola</h1>
-        <span class="role">Computer Science • Cybersecurity</span>
-      </div>
-      <div class="contact">
-        <span>Salt Lake, UT</span>
-        <span>•</span>
-        <a href="tel:+1">(973) 727-1014</a>
-        <span>•</span>
-        <a href="https://linkedin.com/in/i-arriola" target="_blank" rel="noopener">linkedin.com/in/i-arriola</a>
-        <span>•</span>
-        <a href="https://github.com/ivan926" target="_blank" rel="noopener">github.com/ivan926</a>
+      <div class="hero">
+        <div class="hero-left">
+          <div class="avatar">
+            <!-- Replace avatar.jpg with your headshot path -->
+            <img src="avatar.jpg" alt="Ivan Arriola" />
+          </div>
+        </div>
+        <div class="hero-right">
+          <p class="kicker">Welcome — stay curious, build secure 🔐</p>
+          <h1 class="headline">I'm <span class="highlight">Ivan Arriola</span></h1>
+          <p class="subhead">Cloud/SOC/DevSecOps-focused CS student.</p>
+          <p class="subhead large">This isn't just a resume — it's a cyber CV.</p>
+
+          <div class="hero-contacts">
+            <a class="btn primary" href="#" onclick="window.print()">⬇️ Download CV</a>
+            <a class="chip" href="mailto:navis462@outlook.com">@ navis462@outlook.com</a>
+            <span class="chip">📍 Salt Lake, Utah</span>
+          </div>
+
+          <div class="divider"></div>
+        </div>
       </div>
     </header>
-
-    <!-- MAIN CONTENT: copy from resume.html for consistency -->
-    <main>
-      <!-- Sidebar -->
-      <aside class="sidebar" aria-label="Sidebar">
-        <section>
-          <h2>Summary</h2>
-          <div class="rule"></div>
-          <p class="summary">CS student focused on security engineering and SOC operations. Builds reliable automation, investigates alerts, and hardens systems.</p>
-        </section>
-
-        <section>
-          <h2>Skills</h2>
-          <div class="rule"></div>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Bash</span>
-            <span class="tag">PowerShell</span>
-            <span class="tag">Linux</span>
-            <span class="tag">AWS</span>
-            <span class="tag">Docker</span>
-            <span class="tag">SIEM (Splunk)</span>
-            <span class="tag">EDR (CrowdStrike)</span>
-            <span class="tag">Networking</span>
-            <span class="tag">Threat Hunting</span>
-          </div>
-        </section>
-
-        <section>
-          <h2>Education</h2>
-          <div class="rule"></div>
-          <ul class="compact">
-            <li class="edu-item"><span class="where">B.S. Computer Science</span><span class="meta"> 2026 </span></li>
-            <li class="edu-item" style="margin-top:4px;"><span class="where" style="font-weight:500; color:var(--muted);">Brigham Young University (BYU)</span><span class="meta">Provo, UT</span></li>
-            <li style="margin-top:6px; color:var(--muted);">Coursework: Algorithms, OS, Networks, Security</li>
-          </ul>
-        </section>
-      </aside>
-
-      <!-- Content -->
-      <section class="content" aria-label="Main content">
-        <section>
-          <h2>Experience</h2>
-          <div class="rule"></div>
-
-          <!-- Copy your experience articles exactly as in resume.html -->
-          <!-- … paste the same <article class="xp"> blocks here … -->
-        </section>
-      </section>
-    </main>
 
     <div class="actions">
       <button class="btn" onclick="window.print()">
