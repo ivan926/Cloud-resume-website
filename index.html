@@ -98,6 +98,21 @@
 
     /* Contacts row */
     .hero-contacts{ display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; align-items:center; margin:18px 0 10px; }
+
+    /* Grouped actions box */
+    .hero-contacts.actions-box{
+      padding:0; margin-top:10px;
+    }
+    .hero-contacts.actions-box .btn, .hero-contacts.actions-box .chip{
+      padding:.55rem .9rem; border-radius:14px;
+    }
+    .hero-contacts.actions-box .btn.secondary{ border-color: rgba(14,165,233,.4); background:linear-gradient(180deg, rgba(14,165,233,.18), rgba(34,197,94,.10)); font-weight:700; }
+
+    /* Make layout tidy on narrow widths */
+    @media (max-width: 860px){
+      .hero-contacts.actions-box{ gap:.6rem .8rem; }
+    }
+
     .chip{ display:inline-flex; align-items:center; gap:.4rem; border:1px solid var(--line); padding:.5rem .75rem; border-radius:999px; color:var(--ink); text-decoration:none; background:linear-gradient(180deg, rgba(2,6,23,.6), rgba(2,6,23,.2)); }
     .chip:hover{ box-shadow:0 0 0 1px rgba(14,165,233,.24), 0 0 16px rgba(14,165,233,.12); }
     .btn.primary{ border-color: rgba(14,165,233,.4); background:linear-gradient(180deg, rgba(14,165,233,.18), rgba(34,197,94,.10)); font-weight:700; }
@@ -131,15 +146,17 @@
           <p class="subhead">Cyber Security-focused CS student.</p>
           <p class="subhead large">This isn't just a resume — it's a cyber CV.</p>
 
-          <div class="hero-contacts">
-            <a class="btn secondary" href="resume.html">Website Resume View</a>
+          <div class="hero-contacts actions-box">
+            <a class="btn secondary" href="resume.html">🌐 View Online Resume</a>
             <a class="btn primary" href="#" onclick="window.print()">⬇️ Download CV</a>
             <a class="chip" href="mailto:navis462@outlook.com">@ navis462@outlook.com</a>
             <span class="chip">📍 Salt Lake, Utah</span>
           </div>
 
           <div class="divider"></div>
+          <!-- Under construction/ leaving for future additions-->
         </div>
+    
       </div>
     </header>
 
