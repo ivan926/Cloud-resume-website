@@ -84,10 +84,38 @@
     .hero-left{ flex:0 0 auto; }
     .hero-right{ flex:1 1 auto; }
 
-    /* Avatar with neon cyan ring */
-    .avatar{ width:220px; height:220px; border-radius:50%; overflow:hidden; position:relative; box-shadow:0 0 0 6px rgba(103,232,249,.15), 0 0 60px rgba(103,232,249,.25); }
-    .avatar::after{ content:""; position:absolute; inset:-8px; border-radius:50%; background: radial-gradient(closest-side, rgba(103,232,249,.35), transparent 70%); filter: blur(6px); pointer-events:none; }
-    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+.avatar {
+  width: 180px;   /* or 220px if you want the original size */
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  /* Cyan ring + teal glow */
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.4),   /* cyan inner edge (#38bdf8) */
+    0 0 60px rgba(20, 184, 166, 0.5);    /* keep outer teal glow */
+}
+
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  /* Soft teal outer haze */
+  box-shadow: 0 0 30px 12px rgba(20, 184, 166, 0.45);
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1; /* photo stays above glow */
+}
 
     /* Typographic scale */
     .kicker{ color:var(--muted); font-weight:600; letter-spacing:.01em; margin:0 0 10px; }
@@ -137,7 +165,7 @@
         <div class="hero-left">
           <div class="avatar">
             <!-- Replace avatar.jpg with your headshot path -->
-            <img src="avatar.jpg" alt="Ivan Arriola" />
+            <img src="Headshot.jpg" alt="Ivan Arriola" />
           </div>
         </div>
         <div class="hero-right">

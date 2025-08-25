@@ -5,8 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Firstname Lastname – Resume</title>
   <meta name="description" content="One‑page responsive, printable HTML resume." />
+</head>
   <link rel="stylesheet" href="resume.css" />
-  
+  <style>
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0ea5e9;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 0 16px rgba(14,165,233,.6);
+      transition: background .2s, transform .2s, box-shadow .3s;
+      z-index: 9999;
+      animation: pulse-glow 2s infinite;
+    }
+    .floating-btn:hover {
+      background: #0284c7;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 24px rgba(14,165,233,.9);
+    }
+    .floating-btn.encrypting::after {
+      content: " 🔒 Encrypting...";
+      margin-left: 8px;
+      animation: encrypt 1.5s steps(3) forwards;
+    }
+
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 12px rgba(14,165,233,.6); }
+      50% { box-shadow: 0 0 24px rgba(14,165,233,1); }
+      100% { box-shadow: 0 0 12px rgba(14,165,233,.6); }
+    }
+    @keyframes encrypt {
+      0% { content: "🔒 Encrypting..."; letter-spacing: 1px; }
+      50% { content: "🔐 Encrypting..."; letter-spacing: 3px; }
+      60% { content: "🔐 Getting hacked..."; letter-spacing: 3px; }
+      65% { content: "🔐 Getting hacked..."; letter-spacing: 3px; }
+      70% { content: "🔐 JK :)))..."; letter-spacing: 3px; }
+      80% { content: "🔐 JK JK JK.."; letter-spacing: 3px; }
+      85% { content: "🔐 ;>)..."; letter-spacing: 3px; }
+      100% { content: "🔓 Redirecting..."; letter-spacing: 1px; }
+    }
+  </style>
 </head>
 <body>
   <div class="sheet" role="document">
@@ -207,5 +250,16 @@
       <!-- <span>Made with clean, semantic HTML & CSS • v1.0</span> -->
     </footer>
   </div>
+  <a href="index.html" class="floating-btn">💻 Back to Cyber Home</a>
+  <script>
+    const btn = document.querySelector('.floating-btn');
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      btn.classList.add('encrypting');
+      setTimeout(() => {
+        window.location.href = btn.getAttribute('href');
+      }, 1600);
+    });
+  </script>
 </body>
 </html>
